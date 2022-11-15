@@ -18,6 +18,8 @@ public:
 private:
     explicit ApplicationWindow(QObject *parent = nullptr);
 
+    void qml_register_type();
+
 signals:
 
 private:

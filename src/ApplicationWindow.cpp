@@ -1,5 +1,6 @@
 #include "ApplicationWindow.h"
 #include <QDebug>
+#include "FileExplorer.h"
 
 ApplicationWindow* ApplicationWindow::m_instance = nullptr;
 
@@ -23,5 +24,10 @@ ApplicationWindow::~ApplicationWindow()
 
 ApplicationWindow::ApplicationWindow(QObject *parent) : QObject(parent)
 {
+    qml_register_type();
+}
 
+void ApplicationWindow::qml_register_type()
+{
+    qmlRegisterType<FileExplorer>("FileExplorer", 1, 0, "FileExplorer");
 }

@@ -1,4 +1,4 @@
-QT += quick
+QT += quick core
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -6,6 +6,9 @@ QT += quick
 
 SOURCES += \
         src/ApplicationWindow.cpp \
+        src/FileExplorer.cpp \
+        src/FileItem.cpp \
+        src/ListFileModel.cpp \
         src/main.cpp
 
 RESOURCES += qml.qrc
@@ -22,4 +25,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    src/ApplicationWindow.h
+    src/ApplicationWindow.h \
+    src/FileExplorer.h \
+    src/FileItem.h \
+    src/ListFileModel.h
