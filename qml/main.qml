@@ -1,19 +1,25 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
-import QtMultimedia 5.15
 
 Window {
-    width: Screen.width
-    height: Screen.height
+    width: 1280
+    height: 720
     visible: true
 
-    Video
+    ScreenPlayVideo
     {
-        width: parent.width
-        height: parent.height
+        id: screen_play_video
+        anchors.fill: parent
 
-        source: "file:///E:\\QT\\VideoPlayer\\video.mp4"
-        autoPlay: true
-        rotation: 30
+        onOpen_video_button_clicked:
+        {
+            file_browser.show()
+        }
+    }
+
+    FileBrowser
+    {
+        id: file_browser
+        anchors.fill: parent
     }
 }
