@@ -1,5 +1,8 @@
 #include "FileExplorer.h"
 #include <QDebug>
+#ifdef Q_OS_ANDROID
+#include <QtAndroid>
+#endif
 
 FileExplorer::FileExplorer(QObject *parent)
     : QObject{parent}
@@ -9,6 +12,10 @@ FileExplorer::FileExplorer(QObject *parent)
 
 void FileExplorer::update_model(QString folder_name)
 {
+    if (request_permission("WRITE_EXTERNAL_STORAGE") == false)
+    {
+        return;
+    }
     m_file_model->clear();
     if (m_directories.empty())
     {
@@ -58,6 +65,10 @@ QVariant FileExplorer::get_file_model()
 
 void FileExplorer::back()
 {
+    if (request_permission("WRITE_EXTERNAL_STORAGE") == false)
+    {
+        return;
+    }
     if (m_directories.size() == 1)
     {
         return;
@@ -106,4 +117,25 @@ QString FileExplorer::current_dir()
     {
         return m_directories.top();
     }
+}
+
+bool FileExplorer::request_permission(const QString &permission)
+{
+#ifdef Q_OS_ANDROID
+    QString permission_string = "";
+    if (permission == "WRITE_EXTERNAL_STORAGE")
+    {
+        permission_string = "android.permission.WRITE_EXTERNAL_STORAGE";
+    }
+    QtAndroid::PermissionResult result = QtAndroid::checkPermission(permission_string);
+    if(result == QtAndroid::PermissionResult::Denied){
+        QHash<QString, QtAndroid::PermissionResult> resultHash = QtAndroid::requestPermissionsSync(QStringList({permission_string}));
+        if(resultHash[permission_string] == QtAndroid::PermissionResult::Denied)
+            return false;
+    }
+    return true;
+#else
+    Q_UNUSED(permission)
+    return true;
+#endif
 }

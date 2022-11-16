@@ -26,6 +26,9 @@ signals:
     void current_dir_changed();
 
 private:
+    bool request_permission(const QString& permission);
+
+private:
     QStack<QString> m_directories;
     ListFileModel* m_file_model = nullptr;
 };
