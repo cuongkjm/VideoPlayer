@@ -13,6 +13,7 @@ Window {
 
         onOpen_video_button_clicked:
         {
+            screen_play_video.pause()
             file_browser.show()
         }
     }
@@ -26,6 +27,8 @@ Window {
         {
             screen_play_video.video_source = file_path
             close()
+            screen_play_video.play()
+            screen_play_video.pause()
         }
     }
 }

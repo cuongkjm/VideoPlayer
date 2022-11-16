@@ -4,5 +4,6 @@
         <file>qml/Button.qml</file>
         <file>qml/ScreenPlayVideo.qml</file>
         <file>qml/FileBrowser.qml</file>
+        <file>qml/SeekControl.qml</file>
     </qresource>
 </RCC>
