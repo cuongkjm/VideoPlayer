@@ -109,7 +109,7 @@ Rectangle
                             }
                             else
                             {
-                                file_browser.open_file(ABSOLUTE_PATH)
+                                file_browser.open_file("file:///" + ABSOLUTE_PATH)
                             }
                         }
                     }
