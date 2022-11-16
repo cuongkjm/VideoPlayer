@@ -4,8 +4,8 @@ Rectangle
 {
     id: rectangle_button
 
-    property color onclicked_color: "#292f33"
-    property color background_color: "#343a40"
+    property color onclicked_color: "#343a40"
+    property color background_color: "#292f33"
     property alias text_color: text_button.color
     property alias text: text_button.text
 
@@ -14,7 +14,7 @@ Rectangle
     width: childrenRect.width
     height: childrenRect.height
     radius: height/10
-    color: mousearea.pressed ? background_color : onclicked_color
+    color: mousearea.pressed ? onclicked_color : background_color
 
     Text
     {

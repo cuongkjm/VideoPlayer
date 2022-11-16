@@ -3,6 +3,9 @@ import FileExplorer 1.0
 
 Rectangle
 {
+    id: file_browser
+    signal open_file(string file_path);
+
     color: "transparent"
 
     function show()
@@ -24,50 +27,73 @@ Rectangle
             id: rectangle_background
             anchors.fill: parent
 
-            Column
+            ListView
             {
+                id: listview_directory
                 anchors.fill: parent
-                spacing: 5
-
-                ListView
+                header: Row
                 {
-                    width: parent.width
-                    height: parent.height - button_cancel.height
-                    model: file_explorer.get_file_model()
-                    delegate: Rectangle
-                    {
-                        width: childrenRect.height
-                        height: childrenRect.width
+                    spacing: 5
 
+                    Button
+                    {
+                        id: button_cancel
+                        text: "Cancel"
+                        onClicked: loader.sourceComponent = undefined
+                    }
+                    Button
+                    {
+                        id: button_back
+                        text: "<"
+                        onClicked: file_explorer.back();
+                    }
+                    Rectangle
+                    {
+                        width: listview_directory.width - button_back.width
+                        height: childrenRect.height
                         Text
                         {
-                            text: NAME
+                            id: text_current_dir
+                            text: file_explorer.current_dir
                             padding: 20
+                        }
+                    }
+                }
 
-                            MouseArea
+                model: file_explorer.get_file_model()
+                delegate: Rectangle
+                {
+                    width: listview_directory.width
+                    height: childrenRect.height
+                    color: mousearea.pressed ? "#b5b9bd" : "white"
+
+                    border.color: "gray"
+
+                    Text
+                    {
+                        text: NAME
+                        padding: 20
+                    }
+
+                    MouseArea
+                    {
+                        id: mousearea
+                        anchors.fill: parent
+                        onClicked:
+                        {
+                            if (IS_FOLDER)
                             {
-                                anchors.fill: parent
-                                onClicked:
-                                {
-                                    if (IS_FOLDER)
-                                    {
-                                        file_explorer.update_model(NAME)
-                                    }
-                                }
+                                file_explorer.update_model(NAME)
+                            }
+                            else
+                            {
+
                             }
                         }
                     }
-
-                    Component.onCompleted: file_explorer.update_model("")
                 }
 
-                Button
-                {
-                    id: button_cancel
-                    text: "Cancel"
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    onClicked: loader.sourceComponent = undefined
-                }
+                Component.onCompleted: file_explorer.update_model("")
             }
 
             FileExplorer

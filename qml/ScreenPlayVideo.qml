@@ -3,16 +3,16 @@ import QtMultimedia 5.15
 
 Column
 {
+    property alias video_source: video_player.source
     signal open_video_button_clicked()
 
     Video
     {
+        id: video_player
         width: parent.width
         height: parent.height - row_buttons.height
 
-        source: "file:///D:\\cuongkjm\\video.mp4"
-        autoPlay: true
-        rotation: 30
+        source: "file:///E:\\QT\\video.mp4"
     }
 
     Row
@@ -31,6 +31,14 @@ Column
         {
             id: button_play
             text: "Play"
+            onClicked: video_player.play()
+        }
+
+        Button
+        {
+            id: button_pause
+            text: "Pause"
+            onClicked: video_player.pause()
         }
     }
 }
