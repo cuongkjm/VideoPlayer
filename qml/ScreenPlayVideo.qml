@@ -38,6 +38,7 @@ Column
             visible: video_player.error !== MediaPlayer.NoError
             anchors.centerIn: parent
             text: "Could not load this media file : " + video_player.source
+            color: "white"
         }
 
         PinchArea
