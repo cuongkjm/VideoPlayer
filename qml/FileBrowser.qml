@@ -13,6 +13,11 @@ Rectangle
         loader.sourceComponent = component_file_browser
     }
 
+    function close()
+    {
+        loader.sourceComponent = undefined
+    }
+
     Loader
     {
         id: loader
@@ -39,7 +44,7 @@ Rectangle
                     {
                         id: button_cancel
                         text: "Cancel"
-                        onClicked: loader.sourceComponent = undefined
+                        onClicked: file_browser.close()
                     }
                     Button
                     {
@@ -69,10 +74,27 @@ Rectangle
 
                     border.color: "gray"
 
-                    Text
+                    Row
                     {
-                        text: NAME
-                        padding: 20
+                        Rectangle
+                        {
+                            width: text_file_name.height
+                            height: text_file_name.height
+                            color: "transparent"
+                            Image
+                            {
+                                anchors.fill: parent
+                                source: "qrc:/images/folder-icon.png"
+                                visible: IS_FOLDER ? true : false
+                            }
+                        }
+
+                        Text
+                        {
+                            id: text_file_name
+                            text: NAME
+                            padding: 20
+                        }
                     }
 
                     MouseArea
@@ -87,7 +109,7 @@ Rectangle
                             }
                             else
                             {
-
+                                file_browser.open_file(ABSOLUTE_PATH)
                             }
                         }
                     }

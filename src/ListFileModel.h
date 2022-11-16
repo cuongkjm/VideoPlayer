@@ -14,6 +14,7 @@ public:
     {
         FIR_IS_FOLDER = Qt::UserRole + 1,
         FIR_NAME,
+        FIR_ABSOLUTE_PATH
     };
     ListFileModel(QObject* parent);
 

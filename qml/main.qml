@@ -21,5 +21,11 @@ Window {
     {
         id: file_browser
         anchors.fill: parent
+
+        onOpen_file:
+        {
+            screen_play_video.video_source = file_path
+            close()
+        }
     }
 }

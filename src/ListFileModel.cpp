@@ -39,6 +39,8 @@ QVariant ListFileModel::data(const QModelIndex &index, int role) const
         return item.is_folder();
     case FIR_NAME:
         return item.name();
+    case FIR_ABSOLUTE_PATH:
+        return item.absolute_path();
     }
     return QVariant();
 }
@@ -48,5 +50,6 @@ QHash<int, QByteArray> ListFileModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[FIR_IS_FOLDER] = "IS_FOLDER";
     roles[FIR_NAME] = "NAME";
+    roles[FIR_ABSOLUTE_PATH] = "ABSOLUTE_PATH";
     return roles;
 }

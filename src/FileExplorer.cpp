@@ -18,6 +18,7 @@ void FileExplorer::update_model(QString folder_name)
             FileItem file;
             file.set_is_folder(QFileInfo(storage_info.rootPath()).isDir());
             file.set_name(storage_info.rootPath());
+            file.set_absolute_path(storage_info.rootPath());
             m_file_model->add_file(file);
         }
     }
@@ -43,6 +44,7 @@ void FileExplorer::update_model(QString folder_name)
             FileItem file_item;
             file_item.set_is_folder(file.isDir());
             file_item.set_name(file.fileName());
+            file_item.set_absolute_path(file.absoluteFilePath());
             m_file_model->add_file(file_item);
         }
     }
@@ -71,6 +73,7 @@ void FileExplorer::back()
             FileItem file;
             file.set_is_folder(QFileInfo(storage_info.rootPath()).isDir());
             file.set_name(storage_info.rootPath());
+            file.set_absolute_path(storage_info.rootPath());
             m_file_model->add_file(file);
         }
     }
@@ -85,6 +88,7 @@ void FileExplorer::back()
             FileItem file_item;
             file_item.set_is_folder(file.isDir());
             file_item.set_name(file.fileName());
+            file_item.set_absolute_path(file.absoluteFilePath());
             m_file_model->add_file(file_item);
         }
     }

@@ -24,3 +24,13 @@ void FileItem::set_name(const QString &name)
 {
     m_name = name;
 }
+
+const QString &FileItem::absolute_path() const
+{
+    return m_absolute_path;
+}
+
+void FileItem::set_absolute_path(const QString &absolute_path)
+{
+    m_absolute_path = absolute_path;
+}
