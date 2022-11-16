@@ -38,7 +38,7 @@ Item
     {
         id: rectangle_progress_handler
         height: rectangle_full_bar.height
-        width: height/2
+        width: height
         color: "yellow"
         x: rectangle_progress_bar.width
 

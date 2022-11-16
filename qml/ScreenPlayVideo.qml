@@ -29,7 +29,7 @@ Column
             id: video_player
             width: parent.width
             height: parent.height
-            source: "file:///E:\\QT\\video.mp4"
+            source: ""
         }
 
         Text
@@ -144,6 +144,8 @@ Column
                 video_player.height = rectangle_background.height
                 video_player.rotation = 0
                 video_player.scale = 1
+                video_player.x = 0
+                video_player.y = 0
             }
         }
 
