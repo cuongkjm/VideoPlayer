@@ -69,9 +69,9 @@ Column
 
             MouseArea {
                 id: dragArea
+                property var previous_position
                 hoverEnabled: true
                 anchors.fill: parent
-                drag.target: video_player
                 scrollGestureEnabled: true
                 onWheel:
                 {
@@ -92,6 +92,22 @@ Column
                         }
                         var scaleBefore = video_player.scale;
                         video_player.scale += video_player.scale * wheel.angleDelta.y / 120 / 10;
+                    }
+                }
+
+                onPressed:
+                {
+                    dragArea.previous_position = Qt.point(mouseX, mouseY)
+                }
+
+                onPositionChanged:
+                {
+                    if (pressed)
+                    {
+                        var dx = mouseX - previous_position.x
+                        var dy = mouseY - previous_position.y
+                        main_window.x += dx
+                        main_window.y += dy
                     }
                 }
             }

@@ -21,6 +21,17 @@ Item
         anchors.fill: parent
         radius: height/10
         color: "gray"
+
+        MouseArea
+        {
+            anchors.fill: parent
+            onClicked:
+            {
+                console.log(mouseX)
+                var new_position = mouseX/rectangle_full_bar.width * duration
+                seek(new_position)
+            }
+        }
     }
 
     Rectangle
